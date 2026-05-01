@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labellum - Hotel Boutique 4 Estrellas | Moyobamba, Perú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --beige: #F5F2E9;
+            --white-warm: #FDFDF7;
+            --gold: #D4AF37;
+            --green-natural: #8B9A46;
+            --brown-wood: #8B7355;
+            --light-yellow: #FFF8DC;
+            --shadow-soft: 0 10px 30px rgba(139, 115, 85, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--brown-wood);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--brown-wood);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 242, 233, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brown-wood);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .cta-button {
+            background: var(--gold);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23F5F2E9" width="1200" height="800"/><path fill="%238B9A46" opacity="0.3" d="M0 400Q300 200 600 400T1200 400V800H0Z"/><circle fill="%23D4AF37" opacity="0.2" cx="400" cy="300" r="100"/><circle fill="%238B7355" opacity="0.1" cx="800" cy="250" r="80"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 4rem;
+            color: var(--brown-wood);
+        }
+
+        /* Rooms */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .room-card {
+            background: var(--white-warm);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(139, 115, 85, 0.25);
+        }
+
+        .room-image {
+            height: 250px;
+            background: linear-gradient(45deg, var(--green-natural), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .room-content {
+            padding: 2rem;
+        }
+
+        .room-price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background: var(--white-warm);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--brown-wood);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white-warm);
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: linear-gradient(45deg, var(--green-natural), var(--gold));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: var(--white-warm);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--brown-wood);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#inicio" class="logo">Labellum</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habitaciones">Habitaciones</a></li>
+                <li><a href="#reservas">Reservar</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#reservas" class="cta-button">Reservar Ahora</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>Labellum</h1>
+        <p>Donde la elegancia se encuentra con la naturaleza en el corazón de Moyobamba. Experiencia boutique de 4 estrellas.</p>
+        <a href="#reservas" class="cta-button" style="font-size: 1.2rem; padding: 1rem 3rem;">Reservar Ahora</a>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="habitaciones" class="section">
+        <h2 class="section-title">Nuestras Habitaciones</h2>
+        <div class="rooms-grid">
+            <div class="room-card">
+                <div class="room-image">🏨</div>
+                <div class="room-content">
+                    <div class="room-price">S/ 450</div>
+                    <h3>Suite Deluxe</h3>
+                    <p><strong>2-3 huéspedes</strong></p>
+                    <p>Espaciosa suite con vistas panorámicas, cama king size, jacuzzi privado y amenities premium.</p>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-image">👑</div>
+                <div class="room-content">
+                    <div class="room-price">S/ 380</div>
+                    <h3>Habitación Premium</h3>
+                    <p><strong>2 huéspedes</strong></p>
+                    <p>Habitación elegante con balcón privado, cama queen y diseño inspirado en la naturaleza.</p>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-image">🌿</div>
+                <div class="room-content">
+                    <div class="room-price">S/ 280</div>
+                    <h3>Habitación Superior</h3>
+                    <p><strong>2 huéspedes</strong></p>
+                    <p>Comfortable habitación con todas las comodidades, ideal para estancias relajantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="reservas" class="section" style="background: var(--light-yellow);">
+        <h2 class="section-title">Reserva Tu Estancia</h2>
+        <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+                <label>Fecha de Entrada</label>
+                <input type="date" id="checkin" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha de Salida</label>
+                <input type="date" id="checkout" required>
+            </div>
+            <div class="form-group">
+                <label>Número de Huéspedes</label>
+                <select id="guests">
+                    <option value="1">1 huésped</option>
+                    <option value="2">2 huéspedes</option>
+                    <option value="3">3 huéspedes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Habitación</label>
+                <select id="roomType">
+                    <option value="superior">Superior - S/ 280</option>
+                    <option value="premium">Premium - S/ 380</option>
+                    <option value="suite">Suite Deluxe - S/ 450</option>
+                </select>
+            </div>
+            <button type="submit" class="cta-button" style="width: 100%; font-size: 1.1rem;">Confirmar Reserva</button>
+            <p style="text-align: center; margin-top: 1rem; color: var(--green-natural); font-weight: 500;">
+                💳 Aceptamos: Visa, Mastercard, Transferencia bancaria
+            </p>
+        </form>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="section">
+        <h2 class="section-title">Servicios Premium</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-wifi"></i></div>
+                <h3>WiFi Gratuito</h3>
+                <p>Conexión de alta velocidad en todo el hotel</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-utensils"></i></div>
+                <h3>Restaurante Gourmet</h3>
+                <p>Cocina peruana y fusión con ingredientes locales</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-car"></i></div>
+                <h3>Valet Parking</h3>
+                <p>Servicio de estacionamiento exclusivo</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-building"></i></div>
+                <h3>Museo Privado</h3>
+                <p>Colección de arte y cultura amazónica</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-concierge-bell"></i></div>
+                <h3>Room Service 24h</h3>
+                <p>Atención personalizada las 24 horas</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-spa"></i></div>
+                <h3>Spa & Bienestar</h3>
+                <p>Masajes y tratamientos relajantes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="section" style="background: var(--beige);">
+        <h2 class="section-title">Galería</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">🍽️ Restaurante Gourmet</div>
+            <div class="gallery-item">🏛️ Áreas Comunes</div>
+            <div class="gallery-item">🏨 Fachada Principal</div>
+            <div class="gallery-item">🌿 Jardines Tropicales</div>
+            <div class="gallery-item">🌄 Piscina Privada</div>
+            <div class="gallery-item">🗺️ Entorno Natural</div>
+        </div>
+    </section>
+
+    <!-- Attractions -->
+    <section class="section">
+        <h2 class="section-title">Atractivos Cercanos</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div>
+                <h3>🌺 Jardín Botánico</h3>
+                <p>El más importante de la Amazonía peruana a solo 10 minutos.</p>
+            </div>
+            <div>
+                <h3>🏞️ Catarata de Pacchilla</h3>
+                <p>Hermosa cascada natural a 25 minutos del hotel.</p>
+            </div>
+            <div>
+                <h3>🛍️ Centro Artesanal</h3>
+                <p>Artesanías locales y productos amazónicos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: var(--light-yellow);">
+        <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <p>"Una experiencia inolvidable. El diseño, la atención y la ubicación perfecta. ¡Volveremos!"</p>
+                <strong>- María G., Lima</strong>
+            </div>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <p>"Hotel boutique espectacular. La comida es excelente y el personal muy amable."</p>
+                <strong>- Carlos R., Trujillo</strong>
+            </div>
+            <div class="testimonial">
+                <div class="stars">★★★★☆</div>
+                <p>"Muy limpio y elegante. Las vistas son impresionantes."</p>
+                <strong>- Ana P., Chiclayo</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: var(--white-warm); padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: var(--shadow-soft);">
+                <h4>🕒 ¿Cuáles son los horarios de check-in y check-out?</h4>
+                <p>Check-in: 15:00 | Check-out: 12:00</p>
+            </div>
+            <div style="background: var(--white-warm); padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: var(--shadow-soft);">
+                <h4>💳 ¿Qué métodos de pago aceptan?</h4>
+                <p>Visa, Mastercard, American Express, Transferencia bancaria</p>
+            </div>
+            <div style="background: var(--white-warm); padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: var(--shadow-soft);">
+                <h4>🐕 ¿Son pet-friendly?</h4>
+                <p>Sí, aceptamos mascotas pequeñas con cargo adicional</p>
+            </div>
+            <div style="background: var(--white-warm); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-soft);">
+                <h4>↩️ Política de cancelaciones</h4>
+                <p>Gratis hasta 48 horas antes de la llegada</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section" style="background: var(--brown-wood); color: var(--white-warm);">
+        <h2 class="section-title" style="color: var(--white-warm);">Contáctanos</h2>
+        <div class="contact-grid">
+            <div>
+                <h3><i class="fas fa-phone"></i> +51 942 123 456</h3>
+                <h3><i class="fas fa-envelope"></i> reservas@labellum.pe</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div>
+                <p><strong>Ubicación:</strong> Jr. Moyobamba 123, Centro Histórico, Moyobamba, San Martín, Perú</p>
+                <div id="map" style="height: 200px; background: var(--beige); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+                    🗺️ Mapa interactivo próximamente disponible
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Labellum Hotel Boutique ★★★★</h3>
+        <p>Moyobamba, Perú | © 2024 Todos los derechos reservados</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Booking form functionality
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const guests = document.getElementById('guests').value;
+            const roomType = document.getElementById('roomType').value;
+            
+            if (new Date(checkin) >= new Date(checkout)) {
+                alert('La fecha de salida debe ser posterior a la de entrada');
+                return;
+            }
+            
+            alert('¡Reserva confirmada! Te enviaremos los detalles por correo electrónico.');
+            this.reset();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(245, 242, 233, 0.98)';
+            } else {
+                nav.style.background = 'rgba(245, 242, 233, 0.95)';
+            }
+        });
+
+        // Date inputs
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').min = today;
+        document.getElementById('checkout').min = today;
+    </script>
+</body>
+</html>
